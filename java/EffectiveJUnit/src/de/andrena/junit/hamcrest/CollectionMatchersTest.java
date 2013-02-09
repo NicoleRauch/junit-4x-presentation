@@ -10,6 +10,7 @@ public class CollectionMatchersTest {
 
 	@Test public void isEmpty() {
 		TreeSet<String> set = new TreeSet<String>();
+
 		assertThat(set, new IsEmptyCollection());   // direct instantiation
 		assertThat(set, IsEmptyCollection.empty()); // using @Factory method
 		assertThat(set, empty());                   // using static import
