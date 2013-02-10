@@ -9,8 +9,8 @@
     \begin{itemize}
         \item New \texttt{Assert} methods:
     \begin{lstlisting}
-<T> void assertThat(T actual, Matcher<T> matcher)
-<T> void assertThat(String reason, T actual, Matcher<T> matcher)
+<T> void assertThat(T actual, Matcher<? super T> matcher)
+<T> void assertThat(String reason, T actual, Matcher<? super T> matcher)
 \end{lstlisting}
         \item Parameters:
         \begin{description}[matcher]
@@ -47,7 +47,7 @@ Result:
 \begin{lstlisting}
 AssertionError:
 Expected: not a collection containing <2>
-     got: <[1, 2, 3]>
+     but: was <[1, 2, 3]>
 \end{lstlisting}
     \end{block}
 \end{frame}
@@ -68,7 +68,7 @@ Expected: not a collection containing <2>
 
 \end{frame}
 
-\begin{frame}[fragile]{Predefined Matchers - General Purpose}
+\begin{frame}[fragile]{Predefined Matchers -- General Purpose}
 \begin{lstlisting}
   assertThat( null, is( nullValue() ) );
 
@@ -80,7 +80,7 @@ Expected: not a collection containing <2>
 \end{frame}
 
 
-\begin{frame}[fragile]{Predefined Matchers - Strings}
+\begin{frame}[fragile]{Predefined Matchers -- Strings}
 \begin{lstlisting}
   assertThat( "Hallo Welt", containsString( "o We" ) );
   assertThat( "Hallo Welt", startsWith( "Hall" ) );
@@ -95,7 +95,7 @@ Expected: not a collection containing <2>
 \end{frame}
 
 
-\begin{frame}[fragile]{Predefined Matchers - Comparables}
+\begin{frame}[fragile]{Predefined Matchers -- Comparables}
 \begin{lstlisting}
   assertThat( 1 + 1, comparesEqualTo( 2 ) );
 
@@ -108,7 +108,7 @@ Expected: not a collection containing <2>
 \end{frame}
 
 
-\begin{frame}[fragile]{Predefined Matchers - Iterables}
+\begin{frame}[fragile]{Predefined Matchers -- Iterables}
 \begin{lstlisting}
   // List<Integer> list with  1, 3, 5, 7;
   
@@ -138,7 +138,7 @@ Expected: not a collection containing <2>
 \end{frame}
 
 
-\begin{frame}[fragile]{Predefined Matchers - Maps}
+\begin{frame}[fragile]{Predefined Matchers -- Maps}
 \begin{lstlisting}
   Map<Integer, String> map = new HashMap<Integer, String>();
   map.put( 1, "one" );
@@ -173,12 +173,32 @@ Expected: not a collection containing <2>
 
 \begin{frame}{A Custom Matcher}{Implementation}
 	\only<1>{\javainputlisting[firstline=9]{hamcrest13}{IsEmptyCollection}}
-	\only<2|handout:0>{\javainputlisting[firstline=9,emph={@Override,TypeSafeMatcher,matchesSafely,describeMismatchSafely}]{hamcrest13}{IsEmptyCollection}}
+	\only<2|handout:0>{\javainputlisting[firstline=9,emph={@Override,TypeSafeMatcher,describeTo,matchesSafely,describeMismatchSafely}]{hamcrest13}{IsEmptyCollection}}
 	\only<3|handout:0>{\javainputlisting[firstline=9,emph={@Factory, empty}]{hamcrest13}{IsEmptyCollection}}
 \end{frame}
 
-\begin{frame}{A Custom Matcher}{Usage}
-	\javainputlisting[firstline=9]{hamcrest}{CollectionMatchersTest}
+\begin{frame}[fragile]{A Custom Matcher}{Usage}
+	\javainputlisting[firstline=15,lastline=23]{hamcrest13}{CollectionMatchersTest}
+Result:
+\begin{lstlisting}
+Expected: empty collection
+     but: size was 1
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}{Feature Matchers}{Implementation}
+	\only<1>{\javainputlisting[firstline=8]{hamcrest13}{CollectionSizeMatcher}}
+	\only<2|handout:0>{\javainputlisting[firstline=8,emph={FeatureMatcher,Collection,Integer}]{hamcrest13}{CollectionSizeMatcher}}
+	\only<3|handout:0>{\javainputlisting[firstline=8,emph={@Override,featureValueOf}]{hamcrest13}{CollectionSizeMatcher}}
+\end{frame}
+
+\begin{frame}[fragile]{Feature Matchers}{Usage}
+	\javainputlisting[firstline=25,lastline=27]{hamcrest13}{CollectionMatchersTest}
+Result:
+\begin{lstlisting}
+Expected: collection with size <2>
+     but: size was <1>
+\end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]{Summary: Matchers}
