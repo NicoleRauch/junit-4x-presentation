@@ -9,8 +9,8 @@
     \begin{itemize}
         \item New \texttt{Assert} methods:
     \begin{lstlisting}
-<T> void assertThat(T actual, Matcher<T> matcher)
-<T> void assertThat(String reason, T actual, Matcher<T> matcher)
+<T> void assertThat(T actual, Matcher<? super T> matcher)
+<T> void assertThat(String reason, T actual, Matcher<? super T> matcher)
 \end{lstlisting}
         \item Parameters:
         \begin{description}[matcher]
