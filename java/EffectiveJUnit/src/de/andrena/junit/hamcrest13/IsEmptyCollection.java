@@ -9,7 +9,7 @@ import org.hamcrest.TypeSafeMatcher;
 public class IsEmptyCollection extends TypeSafeMatcher<Collection<?>> {
 
 	@Override public void describeTo(Description description) {
-		description.appendText("empty");
+		description.appendText("empty collection");
 	}
 
 	@Override protected boolean matchesSafely(Collection<?> collection) {

@@ -177,8 +177,13 @@ Expected: not a collection containing <2>
 	\only<3|handout:0>{\javainputlisting[firstline=9,emph={@Factory, empty}]{hamcrest13}{IsEmptyCollection}}
 \end{frame}
 
-\begin{frame}{A Custom Matcher}{Usage}
-	\javainputlisting[firstline=9]{hamcrest}{CollectionMatchersTest}
+\begin{frame}[fragile]{A Custom Matcher}{Usage}
+	\javainputlisting[firstline=9]{hamcrest13}{CollectionMatchersTest}
+Result:
+\begin{lstlisting}
+Expected: empty collection
+     but: size was 1
+\end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]{Summary: Matchers}
