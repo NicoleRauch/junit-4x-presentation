@@ -7,9 +7,10 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExternalResource;
 import org.junit.rules.MethodRule;
+import org.junit.rules.TestRule;
 
 public class Order {
-	@Rule public MethodRule rule = new ExternalResource() {
+	@Rule public TestRule rule = new ExternalResource() {
       @Override protected void before() { out.println("@Rule before"); }
       @Override protected void after()  { out.println("@Rule after");  }
 	};
