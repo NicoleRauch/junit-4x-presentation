@@ -178,11 +178,26 @@ Expected: not a collection containing <2>
 \end{frame}
 
 \begin{frame}[fragile]{A Custom Matcher}{Usage}
-	\javainputlisting[firstline=9]{hamcrest13}{CollectionMatchersTest}
+	\javainputlisting[firstline=15,lastline=23]{hamcrest13}{CollectionMatchersTest}
 Result:
 \begin{lstlisting}
 Expected: empty collection
      but: size was 1
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}{Feature Matchers}{Implementation}
+	\only<1>{\javainputlisting[firstline=8]{hamcrest13}{CollectionSizeMatcher}}
+	\only<2|handout:0>{\javainputlisting[firstline=8,emph={FeatureMatcher,Collection,Integer}]{hamcrest13}{CollectionSizeMatcher}}
+	\only<3|handout:0>{\javainputlisting[firstline=8,emph={@Override,featureValueOf}]{hamcrest13}{CollectionSizeMatcher}}
+\end{frame}
+
+\begin{frame}[fragile]{Feature Matchers}{Usage}
+	\javainputlisting[firstline=25,lastline=27]{hamcrest13}{CollectionMatchersTest}
+Result:
+\begin{lstlisting}
+Expected: collection with size <2>
+     but: size was <1>
 \end{lstlisting}
 \end{frame}
 

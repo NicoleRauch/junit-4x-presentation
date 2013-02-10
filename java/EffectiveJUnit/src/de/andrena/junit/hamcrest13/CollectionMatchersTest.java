@@ -1,8 +1,11 @@
 package de.andrena.junit.hamcrest13;
 
+import static de.andrena.junit.hamcrest13.CollectionSizeMatcher.hasSize;
 import static de.andrena.junit.hamcrest13.IsEmptyCollection.empty;
+import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
+import java.util.Arrays;
 import java.util.Set;
 import java.util.TreeSet;
 import org.junit.Test;
@@ -17,5 +20,9 @@ public class CollectionMatchersTest {
 		assertThat(set, IsEmptyCollection.empty()); // using @Factory method
 		assertThat(set, empty());                   // using static import
 		assertThat(set, is(empty()));               // syntactic sugar
+	}
+
+	@Test public void size() {
+		assertThat(Arrays.asList("a"), hasSize(equalTo(2)));
 	}
 }
